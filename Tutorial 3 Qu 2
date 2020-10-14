@@ -1,0 +1,42 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n,j,k, ar[10][10];
+    int random;
+    time_t t;
+    srand((unsigned)time(&t));   //initialising random number
+
+    printf("Give a number n from 1-100: ");
+    scanf("%d", &n);
+    for (n; n!=0; n--)
+    {
+        random = 0;
+        random = rand() %100;
+        j = random % 10;
+        k = random / 10;
+        if ar[k][j] != 1
+        {
+            ar[k][j] = 1;
+        }
+        else
+        {
+            
+        }
+            
+    }
+    int a,b;
+    for (a=0; a<10; a++)
+    {
+        printf("%d%d - %d%d", a,0,a,9);
+        for (b=0; b<10; b++)
+        {
+            if (ar[a][b] == 1)
+            {
+                printf("%c", '*');
+            }
+        }
+        printf("\n");
+    }
+}
