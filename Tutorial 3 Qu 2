@@ -12,24 +12,30 @@ int main()
     scanf("%d", &n);
     for (n; n!=0; n--)
     {
-        random = 0;
         random = rand() %100;
         j = random % 10;
         k = random / 10;
-        if ar[k][j] != 1
+        if (ar[k][j] != 1)
         {
             ar[k][j] = 1;
         }
         else
         {
-            
+            n++;
         }
-            
+
     }
     int a,b;
     for (a=0; a<10; a++)
     {
-        printf("%d%d - %d%d", a,0,a,9);
+        if (a == 0)
+        {
+            printf("%d - %d      |", 0,9);
+        }
+        else
+        {
+            printf("%d%d - %d%d    |", a,0,a,9);
+        }
         for (b=0; b<10; b++)
         {
             if (ar[a][b] == 1)
