@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define SIZE 4
+
+void reduceMatrix2D(int ar[][SIZE], int rowSize, int colSize);
+
+int main()
+{
+    int loop;
+    int ar[SIZE][SIZE]={{4,3,8,6},{9,0,6,5},{5,1,2,4},{9,8,3,7}};
+    reduceMatrix2D(ar,4,4);
+    for (loop = 0; loop <16; loop++)
+    {
+        printf("%d ", *(ar[0]+loop));
+    }
+    return 0;
+}
+
+
+void reduceMatrix2D(int ar[][SIZE], int rowSize, int colSize)
+{
+    int i,k;
+    int temp[rowSize][colSize];
+    for (i=0;i<rowSize;i++)
+    {
+        for(k=0;k<colSize;k++)
+        {
+            temp[i][k]=ar[i][k];
+        }
+    }
+    for (i=0;i<rowSize;i++)
+    {
+        for(k=0;k<colSize;k++)
+        {
+            if (i==k)
+            {
+                for (k=0; k<i;k++)
+                {
+                    temp[i][k]=temp[i][k];
+                }
+            }
+        printf("%d ", temp[i][k]);
+        }
+    printf("\n");
+    }
+}
