@@ -1,46 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define SIZE 4
-
+int SIZE=4;
 void reduceMatrix2D(int ar[][SIZE], int rowSize, int colSize);
 
 int main()
 {
-    int loop;
-    int ar[SIZE][SIZE]={{4,3,8,6},{9,0,6,5},{5,1,2,4},{9,8,3,7}};
-    reduceMatrix2D(ar,4,4);
-    for (loop = 0; loop <16; loop++)
+    int i,a;
+    int ar[4][4]={{4,3,8,6},{9,0,6,5},{5,1,2,4}, {9,8,3,7}};
+    reduceMatrix2D(ar, 4, 4);
+    for (i = 0; i <4; i++)
     {
-        printf("%d ", *(ar[0]+loop));
+        for (a = 0; a<4; a++)
+        {
+            printf("%d ", ar[i][a]);
+        }
+        printf("\n");
     }
     return 0;
 }
 
-
 void reduceMatrix2D(int ar[][SIZE], int rowSize, int colSize)
 {
-    int i,k;
-    int temp[rowSize][colSize];
-    for (i=0;i<rowSize;i++)
+    int j,k,l,temp;
+    for (j=0; j<rowSize; j++)
     {
-        for(k=0;k<colSize;k++)
+        for (k=0; k<colSize; k++)
         {
-            temp[i][k]=ar[i][k];
-        }
-    }
-    for (i=0;i<rowSize;i++)
-    {
-        for(k=0;k<colSize;k++)
-        {
-            if (i==k)
+            if (j == k)
             {
-                for (k=0; k<i;k++)
+                temp=0;
+                for(l=j; l<colSize;l++)
                 {
-                    temp[i][k]=temp[i][k];
+                    temp += ar[l][k];
+                    ar[l][k]=0;
+                    printf("%d ", temp);
                 }
+                printf("\n");
+                ar[j][k] = temp;
             }
-        printf("%d ", temp[i][k]);
         }
-    printf("\n");
     }
 }
