@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <math.h>
+char *strncpy(char *s1, char *s2, int n);
+
+int main()
+{
+    char str1[80];
+    char str2[80];
+    char str3[80];
+    gets(str1);
+    gets(str2);
+    printf("%s", strncpy(str1, str2, 5));
+}
+
+char *strncpy(char *s1, char *s2, int n)
+{
+    int i=0;int j=0;
+    int p;
+    while (*(s1+i)!='\0')
+    {
+        i++;
+    }
+    while (*(s2+i)!='\0')
+    {
+        j++;
+    }
+    for(p=0; p<n; p++)
+    {
+        *(s1+i)=*(s2+p);
+        i++;
+    }
+    while (j<n)
+    {
+        *(s1+i+1) = '\0';
+        i++;
+        j++;
+    }
+    *(s1+i+1) = '\0';
+    return s1;
+}
