@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+
+typedef struct{
+    float operand1, operand2;
+    char op;
+} bexpression;
+
+float compute1(bexpression *expr);
+
+int main()
+{
+    bexpression expression;
+    printf("Input 2 values and an arithmetic operator:\n");
+    scanf("%f %f %c", &expression.operand1, &expression.operand2, &expression.op);
+    printf("%f",compute1(&expression));
+}
+
+float compute1(bexpression *expr)
+{
+    switch (expr->op)
+    {
+        case'+':
+        return expr->operand1+expr->operand2;
+
+        case'-':
+        return expr->operand1-expr->operand2;
+
+        case'/':
+        return expr->operand1/expr->operand2;
+
+        case'*':
+        return expr->operand1*expr->operand2;
+    }
+}
