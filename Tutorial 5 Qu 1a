@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+
+struct circle{
+    double radius;
+    double x;
+    double y;
+};
+int intersect(struct circle c1, struct circle c2);
+
+int main()
+{
+    int u;
+    struct circle c1;
+    struct circle c2;
+    printf("Input the value of Radius, x and y of circle 1:\n");
+    scanf("%lf %lf %lf", &c1.radius, &c1.x, &c1.y);
+    printf("Input the value of Radius, x and y of circle 2:\n");
+    scanf("%lf %lf %lf", &c2.radius, &c2.x, &c2.y);
+    u = intersect(c1,c2);
+    switch(u)
+    {
+    case 1:
+        printf("They intersect!");
+        break;
+
+    case 0:
+        printf("They do not intersect!");
+        break;
+    }
+}
+
+int intersect(struct circle c1, struct circle c2)
+{
+    double length, distance_between;
+    length = sqrt(((c1.x-c2.x)*(c1.x-c2.x))+((c1.y-c2.y)*(c1.y-c2.y)));
+    distance_between = c1.radius+c2.radius;
+    if (distance_between>=length)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
