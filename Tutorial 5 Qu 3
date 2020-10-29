@@ -1,0 +1,110 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct{
+    int id;
+    int totalLeave;
+    int leaveTaken;
+}leaveRecord;
+
+void getinput(leaveRecord list[], int*n);
+
+int mayTakeLeave(leaveRecord list[], int id, int leave, int n);
+
+void printList(leaveRecord list[], int n);
+
+int main()
+{
+    int option, end=0;
+    int no_entries = 0;
+    int ID, leave_taking, result;
+    leaveRecord employees[80];
+    while (end!=1)
+    {
+        printf("Choose an option:\n"
+           "1. Get input\n"
+           "2. May Take Leave\n"
+           "3. Print List\n"
+           "4. Exit Programe\n");
+        scanf("%d", &option);
+        switch(option)
+        {
+        case 1:
+            getinput(employees, &no_entries);
+            break;
+        case 2:
+            printf("What is the persons ID and how many days to apply?\n");
+            scanf("%d %d", &ID, &leave_taking);
+            result = mayTakeLeave(employees, ID, leave_taking, no_entries);
+            switch(result)
+            {
+            case 1:
+                printf("Approval is given\n");
+                break;
+            case 0:
+                printf("Approval is not given\n");
+                break;
+            case -1:
+                printf("ID is not in Database\n");
+                break;
+            }
+            break;
+        case 3:
+            printList(employees, no_entries);
+            break;
+        case 4:
+            end =1;
+            break;
+        }
+    }
+    return 0;
+}
+
+void getinput(leaveRecord list[], int*n)
+{
+    int p;
+    while (1==1)
+    {
+        printf("Input staff identifier:\n");
+        scanf("%d", &list[*n].id);
+        printf("Input total number of days of leave allowed:\n");
+        scanf("%d", &list[*n].totalLeave);
+        printf("Input number of leave taken so far:\n");
+        scanf("%d", &list[*n].leaveTaken);
+        printf("Continue?(1 to continue, 0 to end)\n");
+        (*n)++;
+        scanf("%d", &p);
+        if (p==0)
+        {
+            break;
+        }
+    }
+}
+
+void printList(leaveRecord list[], int n)
+{
+    int f;
+    for(f=0; f<n; f++)
+    {
+        printf("ID:%d\nTotal Leave:%d\nLeave Taken:%d\n", list[f].id, list[f].totalLeave, list[f].leaveTaken);
+    }
+}
+
+int mayTakeLeave(leaveRecord list[], int id, int leave, int n)
+{
+    for (n; n>0; n--)
+    {
+        if (list[n-1].id == id)
+        {
+            if (leave+list[n-1].leaveTaken<list[n-1].totalLeave)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+    return -1;
+}
